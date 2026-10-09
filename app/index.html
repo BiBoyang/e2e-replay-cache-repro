@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Todo Lab</title>
+<style>
+  body { font-family: system-ui; max-width: 480px; margin: 40px auto; }
+  li { margin: 6px 0; }
+  .done span { text-decoration: line-through; color: #999; }
+</style>
+</head>
+<body>
+  <h1>Todo Lab</h1>
+  <form id="add-form">
+    <label for="new-todo">New todo</label>
+    <input id="new-todo" name="todo" type="text" autocomplete="off">
+    <button type="submit">Add</button>
+  </form>
+  <ul id="list" aria-live="polite"></ul>
+  <p id="status" role="status"></p>
+  <script>
+    const form = document.getElementById('add-form');
+    const input = document.getElementById('new-todo');
+    const list = document.getElementById('list');
+    const status = document.getElementById('status');
+    let count = 0;
+
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const text = input.value.trim();
+      if (!text) return;
+      count += 1;
+      const li = document.createElement('li');
+      const cb = document.createElement('input');
+      cb.type = 'checkbox';
+      cb.addEventListener('change', () => {
+        li.classList.toggle('done', cb.checked);
+        status.textContent = cb.checked ? `Completed: ${text}` : '';
+      });
+      const span = document.createElement('span');
+      span.textContent = text;
+      li.appendChild(cb);
+      li.appendChild(span);
+      list.appendChild(li);
+      status.textContent = `${count} item${count > 1 ? 's' : ''} in the list`;
+      input.value = '';
+      input.focus();
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,16 @@
+{
+  "name": "e2e-replay-cache-repro",
+  "private": true,
+  "version": "1.0.0",
+  "description": "Minimal reproduction for tester-army/e2e replay-cache model-swap blind spot (e2e 0.18.0)",
+  "scripts": {
+    "app": "python3 -m http.server 4173 --directory app",
+    "test": "e2e run"
+  },
+  "devDependencies": {
+    "@ai-sdk/openai-compatible": "^3.0.0",
+    "@e2e-dev/web": "^0.13.0",
+    "ai": "^7.0.0",
+    "e2e": "^0.18.0"
+  }
+}
